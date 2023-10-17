@@ -1,0 +1,34 @@
+#Start kafka with zookeeper
+bin/windows/zookeeper-server-start.bat config/zookeeper.properties
+bin/windows/kafka-server-start.bat config/server.properties
+
+#create topic
+bin/windows/kafka-topics.bat --create --topic quickstart-events --bootstrap-server localhost:9092
+
+#Write in topic
+bin/windows/kafka-console-producer.bat --topic quickstart-events --bootstrap-server localhost:9092
+
+#Read topic from begining
+bin/windows/kafka-console-consumer.bat --topic quickstart-events --from-beginning --bootstrap-server localhost:9092
+
+
+#create start-movement-topic
+bin/windows/kafka-topics.bat --create --topic start-movement-topic --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
+
+
+#Read topic from now
+bin/windows/kafka-console-consumer.bat --topic start-movement-topic --bootstrap-server localhost:9092
+
+#Write in topic start-movement-topic
+bin/windows/kafka-console-producer.bat --topic start-movement-topic --bootstrap-server localhost:9092
+
+
+#create update-board
+bin/windows/kafka-topics.bat --create --topic update-board --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
+
+#Read topic update-board from now
+bin/windows/kafka-console-consumer.bat --topic update-board --bootstrap-server localhost:9092
+
+
+#create update-position
+bin/windows/kafka-topics.bat --create --topic update-position --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1

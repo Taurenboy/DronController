@@ -1,0 +1,23 @@
+<div class="center-content">
+  <table>
+    <tr class="buttons-row">
+      <td><button mat-raised-button color="primary" (click)="startDrones()">Start drones</button></td>
+      <td><button mat-raised-button color="primary" (click)="startDronesMovement()">Move drones</button></td>
+      <td><button mat-raised-button color="primary" (click)="resetDronesPositions()">Reset drones position</button></td>
+    </tr>
+    <tr>
+      <td class="center-content">
+        <table>
+          <tr *ngFor="let fila of tablero">
+            <td *ngFor="let celda of fila">
+              <div [ngClass]="{ 'celda': true, 'celda-llena': isGreen(celda), 'celda-ocupada-incorrecta': isRed(celda)}">
+                {{ getId(celda) }}
+              </div>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+
+</div>
